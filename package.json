@@ -1,0 +1,41 @@
+{
+  "name": "game-tanchishe",
+  "version": "1.0.0",
+  "description": "Game",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speed-sonic/game-tanchishe.git"
+  },
+  "keywords": [
+    "html",
+    "h5",
+    "game"
+  ],
+  "author": "Alex",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/speed-sonic/game-tanchishe/issues"
+  },
+  "homepage": "https://github.com/speed-sonic/game-tanchishe#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "8",
+    "browserify": "^17.0.0",
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "tsify": "^5.0.2",
+    "typescript": "^4.1.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1"
+  }
+}
