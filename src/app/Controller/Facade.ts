@@ -1,7 +1,7 @@
 import { EventCtrlGameStart, EventCtrlGameStop } from "../../config/events";
 import { container } from "../Common/Container";
 import { eventDispatch } from "../Common/functions";
-import FactoryFirstScreen from "../Factory/Facade/FirstScreen";
+import ServiceFirstScreen from "../Service/Facade/FirstScreen";
 import Controller from "./Controller";
 
 export default class Facade extends Controller {
@@ -15,8 +15,8 @@ export default class Facade extends Controller {
 
     public listenerReady(_: Event) {
         // eventDispatch(EventCtrlGameStart)
-        const factoryFirstScreen: FactoryFirstScreen = container.get(FactoryFirstScreen.KEY);
-        const firstScreen = factoryFirstScreen.make();
+        const serviceFirstScreen: ServiceFirstScreen = container.get(ServiceFirstScreen.KEY);
+        const firstScreen = serviceFirstScreen.getDom();
         document.getElementById('app').appendChild(firstScreen);
     }
 

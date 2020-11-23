@@ -10,3 +10,7 @@ export interface ElementOption {
     innerHTML?: string,
     innerText?: string
 }
+
+export interface Strategy {
+    algorithm(): any;
+}
