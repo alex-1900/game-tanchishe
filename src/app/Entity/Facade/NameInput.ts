@@ -11,4 +11,6 @@ export default class NameInput {
         width: '45%',
         fontWeight: 'bold'
     }
+
+    placeholder: string = '你的名字';
 }

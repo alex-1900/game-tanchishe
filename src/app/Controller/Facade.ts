@@ -1,7 +1,5 @@
-import { EventCtrlGameStart, EventCtrlGameStop } from "../../config/events";
 import { container } from "../Common/Container";
-import { eventDispatch } from "../Common/functions";
-import ServiceFirstScreen from "../Service/Facade/FirstScreen";
+import ServiceScheduler from "../Service/Facade/Scheduler";
 import Controller from "./Controller";
 
 export default class Facade extends Controller {
@@ -11,13 +9,29 @@ export default class Facade extends Controller {
     public constructor() {
         super();
         this.listenerReady = this.listenerReady.bind(this);
+        this.listenerSocialIntro = this.listenerSocialIntro.bind(this);
+        this.listenerSocialShare = this.listenerSocialShare.bind(this);
+        this.listenerSocialRank = this.listenerSocialRank.bind(this);
     }
 
     public listenerReady(_: Event) {
-        // eventDispatch(EventCtrlGameStart)
-        const serviceFirstScreen: ServiceFirstScreen = container.get(ServiceFirstScreen.KEY);
-        const firstScreen = serviceFirstScreen.getDom();
-        document.getElementById('app').appendChild(firstScreen);
+        const serviceScheduler: ServiceScheduler = container.get(ServiceScheduler.KEY);
+        serviceScheduler.stateSocialIntro(false);
+        serviceScheduler.stateFirstScreen(true);
+    }
+
+    public listenerSocialIntro(_: Event) {
+        const serviceScheduler: ServiceScheduler = container.get(ServiceScheduler.KEY);
+        serviceScheduler.stateFirstScreen(false);
+        serviceScheduler.stateSocialIntro(true);
+    }
+
+    public listenerSocialShare(_: Event) {
+        alert('listenerSocialShare');
+    }
+
+    public listenerSocialRank(_: Event) {
+        alert('listenerSocialRank');
     }
 
 }

@@ -12,17 +12,10 @@ export class Container {
     }
 
     public get<T = any>(key: string): T {
-        if (this.store[key] !== undefined) {
-            return this.store[key];
+        if (this.store[key] === undefined) {
+            this.store[key] = this.make(key);
         }
-        if (this.definations[key] !== undefined) {
-            const val = this.definations[key].call(this, this);
-            if (val !== undefined) {
-                this.store[key] = val;
-                return val;
-            }
-        }
-        throw new Error('The value is not found in container.');
+        return this.store[key];
     }
 
     public set(key: string, val: any) {
@@ -31,6 +24,16 @@ export class Container {
 
     public def(key: string, defination: Function) {
         this.definations[key] = defination;
+    }
+
+    public make(key: string, ...params: any): any {
+        if (this.definations[key] !== undefined) {
+            const val = this.definations[key].apply(this, params);
+            if (val !== undefined) {
+                return val;
+            }
+        }
+        throw new Error('The value is not found in container.');
     }
 }
 
