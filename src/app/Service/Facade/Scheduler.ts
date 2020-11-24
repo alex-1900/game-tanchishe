@@ -1,4 +1,4 @@
-import { container } from "../../Common/Container";
+import { get } from "../../Common/functions";
 import ServiceUserScreen from "./UserScreen";
 
 export default class Scheduler {
@@ -11,7 +11,7 @@ export default class Scheduler {
     private serviceUserScreen: ServiceUserScreen;
 
     public constructor() {
-        this.serviceUserScreen = container.get(ServiceUserScreen.KEY);
+        this.serviceUserScreen = get(ServiceUserScreen);
     }
 
     public stateFirstScreen(active: boolean) {

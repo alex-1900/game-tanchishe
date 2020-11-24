@@ -1,6 +1,5 @@
-import { container } from "../../Common/Container";
 import ServiceDocument from "../Document";
-import { eventDispatch } from "../../Common/functions";
+import { eventDispatch, get } from "../../Common/functions";
 
 export default class DomHelper {
     public static KEY: string = 'Service.Facade.DomHelper';
@@ -8,7 +7,7 @@ export default class DomHelper {
     private docService: ServiceDocument;
 
     public constructor() {
-        this.docService = container.get(ServiceDocument.KEY);
+        this.docService = get(ServiceDocument);
         this.handlerEvent = this.handlerEvent.bind(this);
     }
 
@@ -23,7 +22,7 @@ export default class DomHelper {
         return element;
     }
 
-    public makeFromEntity(entity: any): HTMLElement {
+    public makeFromEntity(entity: any): any {
         const doc = this.docService;
         const dom = doc.options(doc.box(entity.tag), {
             css: entity.style
@@ -55,6 +54,14 @@ export default class DomHelper {
 
         if (entity.target) {
             dom.target = entity.target;
+        }
+
+        if (entity.width) {
+            dom.width = entity.width;
+        }
+
+        if (entity.height) {
+            dom.height = entity.height;
         }
 
         return dom;

@@ -1,4 +1,4 @@
-import { container } from "../Common/Container";
+import { get } from "../Common/functions";
 import ServiceScheduler from "../Service/Facade/Scheduler";
 import Controller from "./Controller";
 
@@ -14,13 +14,13 @@ export default class Facade extends Controller {
     }
 
     public listenerReady(_: Event) {
-        const serviceScheduler: ServiceScheduler = container.get(ServiceScheduler.KEY);
+        const serviceScheduler: ServiceScheduler = get(ServiceScheduler);
         serviceScheduler.stateSocialIntro(false);
         serviceScheduler.stateFirstScreen(true);
     }
 
     public listenerSocialIntro(_: Event) {
-        const serviceScheduler: ServiceScheduler = container.get(ServiceScheduler.KEY);
+        const serviceScheduler: ServiceScheduler = get(ServiceScheduler);
         serviceScheduler.stateFirstScreen(false);
         serviceScheduler.stateSocialIntro(true);
     }

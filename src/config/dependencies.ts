@@ -6,15 +6,17 @@ import ServiceUserScreen from "../app/Service/Facade/UserScreen";
 import ServiceAnimation from "../app/Service/Animation";
 import ServiceDocument from "../app/Service/Document";
 import ServiceDomHelper from "../app/Service/Facade/DomHelper";
+import ServiceScheduler from "../app/Service/Facade/Scheduler";
+import ServiceGameScreen from "../app/Service/Facade/GameScreen";
 import EntityBackground from "../app/Entity/Facade/Background";
 import EntityMainTitle from "../app/Entity/Facade/MainTitle";
 import EntityNameInput from "../app/Entity/Facade/NameInput";
 import EntityStartGameButton from "../app/Entity/Facade/StartGameButton";
 import EntitySocialButton from "../app/Entity/Facade/SocialButton";
-import ServiceScheduler from "../app/Service/Facade/Scheduler";
 import EntityIntroBoard from "../app/Entity/Facade/IntroBoard";
 import EntityBackButton from "../app/Entity/Facade/BackButton";
-import EntitySnakeHead from "../app/Entity/Game/SnakeHead";
+import EntityMask from "../app/Entity/Game/Mask";
+import ServiceShapes from "../app/Service/Shapes";
 
 const defaultRegister = serviceDifinationRegister((service: any) => {
     return (_: Container) => new service;
@@ -28,6 +30,8 @@ defaultRegister(ServiceDocument);
 defaultRegister(ServiceUserScreen);
 defaultRegister(ServiceDomHelper);
 defaultRegister(ServiceScheduler);
+defaultRegister(ServiceGameScreen);
+defaultRegister(ServiceShapes);
 
 defaultRegister(EntityBackground);
 defaultRegister(EntityMainTitle);
@@ -41,5 +45,5 @@ serviceDifinationRegister((service: any) => {
 })(EntitySocialButton);
 
 serviceDifinationRegister((service: any) => {
-    return (num: number) => new service(num);
-})(EntitySnakeHead);
+    return () => new service();
+})(EntityMask);

@@ -1,4 +1,4 @@
-import { FrameRelated, Indexable } from "../interface";
+import { MaskRelated, Indexable } from "../interface";
 
 export default class Animation {
     public static KEY: string = 'Service.Animation';
@@ -7,7 +7,7 @@ export default class Animation {
 
     private req: number = 0;
 
-    private entities: Indexable<FrameRelated> = {};
+    private entities: Indexable<MaskRelated> = {};
 
     public start() {
         this.isRunning = true;
@@ -22,11 +22,11 @@ export default class Animation {
         this.req = requestAnimationFrame(step);
     }
 
-    public addEntity(entity: FrameRelated) {
+    public addEntity(entity: MaskRelated) {
         this.entities[entity.getUniqueId()] = entity;
     }
 
-    public removeEntity(entity: FrameRelated) {
+    public removeEntity(entity: MaskRelated) {
         const uniqueId = entity.getUniqueId();
         if (this.entities[uniqueId]) {
             this.entities[uniqueId].onDestruct();

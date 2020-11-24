@@ -7,8 +7,7 @@ import { container } from "./Container";
  * @param method The Controller method
  */
 export function eventMapping(type: string, cls: any, method: string) {
-    const key = cls.KEY;
-    document.addEventListener(type, container.get(key)[method]);
+    document.addEventListener(type, get(cls)[method]);
 }
 
 /**
@@ -41,4 +40,8 @@ export function makeUUIDV4() {
 
 export function make(def: any, ...params: any): any {
     return container.make(def.KEY, ...params);
+}
+
+export function get(def: any): any {
+    return container.get(def.KEY);
 }

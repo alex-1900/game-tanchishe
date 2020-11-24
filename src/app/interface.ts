@@ -15,7 +15,7 @@ export interface Strategy {
     algorithm(): any;
 }
 
-export interface FrameRelated {
+export interface MaskRelated {
     update(timestamp: number): any;
     getUniqueId(): string;
     onDestruct(): void;

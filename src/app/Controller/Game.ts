@@ -1,8 +1,7 @@
 import Controller from "./Controller";
 import ServiceAnimation from "../Service/Animation";
-import { container } from "../Common/Container";
-import SnakeHead from "../Entity/Game/SnakeHead";
-import { make } from "../Common/functions";
+import { get } from "../Common/functions";
+import ServiceScheduler from "../Service/Facade/Scheduler";
 
 export default class Game extends Controller {
 
@@ -15,16 +14,16 @@ export default class Game extends Controller {
     }
 
     public listenerGameStart(_: Event) {
-        const animationService: ServiceAnimation = container.get(ServiceAnimation.KEY);
+        const serviceScheduler: ServiceScheduler = get(ServiceScheduler);
+        serviceScheduler.stateSocialIntro(false);
+        serviceScheduler.stateFirstScreen(false);
+
+        const animationService: ServiceAnimation = get(ServiceAnimation);
         animationService.start();
-        const snakeHead1: SnakeHead = make(SnakeHead, 1);
-        const snakeHead2: SnakeHead = make(SnakeHead, 2);
-        animationService.addEntity(snakeHead1);
-        animationService.addEntity(snakeHead2);
     }
 
     public listenerGameStop(_: Event) {
-        const animationService: ServiceAnimation = container.get(ServiceAnimation.KEY);
+        const animationService: ServiceAnimation = get(ServiceAnimation);
         animationService.stop();
     }
 
