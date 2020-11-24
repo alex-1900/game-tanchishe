@@ -13,6 +13,8 @@ import EntityStartGameButton from "../app/Entity/Facade/StartGameButton";
 import EntitySocialButton from "../app/Entity/Facade/SocialButton";
 import ServiceScheduler from "../app/Service/Facade/Scheduler";
 import EntityIntroBoard from "../app/Entity/Facade/IntroBoard";
+import EntityBackButton from "../app/Entity/Facade/BackButton";
+import EntitySnakeHead from "../app/Entity/Game/SnakeHead";
 
 const defaultRegister = serviceDifinationRegister((service: any) => {
     return (_: Container) => new service;
@@ -32,7 +34,12 @@ defaultRegister(EntityMainTitle);
 defaultRegister(EntityNameInput);
 defaultRegister(EntityStartGameButton);
 defaultRegister(EntityIntroBoard);
+defaultRegister(EntityBackButton);
 
 serviceDifinationRegister((service: any) => {
     return (s: string, c: Function, bc: string, h: string) => new service(s, c, bc, h);
 })(EntitySocialButton);
+
+serviceDifinationRegister((service: any) => {
+    return (num: number) => new service(num);
+})(EntitySnakeHead);

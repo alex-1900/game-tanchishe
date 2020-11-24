@@ -10,7 +10,6 @@ export default class Facade extends Controller {
         super();
         this.listenerReady = this.listenerReady.bind(this);
         this.listenerSocialIntro = this.listenerSocialIntro.bind(this);
-        this.listenerSocialShare = this.listenerSocialShare.bind(this);
         this.listenerSocialRank = this.listenerSocialRank.bind(this);
     }
 
@@ -26,12 +25,8 @@ export default class Facade extends Controller {
         serviceScheduler.stateSocialIntro(true);
     }
 
-    public listenerSocialShare(_: Event) {
-        alert('listenerSocialShare');
-    }
-
     public listenerSocialRank(_: Event) {
-        alert('listenerSocialRank');
+        alert('敬请期待');
     }
 
 }

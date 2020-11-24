@@ -1,21 +1,22 @@
 import { container } from "../../Common/Container";
-import ServiceDocument from "../Document";
 import EntityBackground from "../../Entity/Facade/Background";
 import MainTitle from "../../Entity/Facade/MainTitle";
 import NameInput from "../../Entity/Facade/NameInput";
 import StartGameButton from "../../Entity/Facade/StartGameButton";
 import SocialButton from "../../Entity/Facade/SocialButton";
-import { EventSocialIntro, EventSocialRank, EventSocialShare } from "../../../config/events";
+import { EventSocialIntro, EventSocialRank } from "../../../config/events";
 import ServiceDomHelper from "./DomHelper";
 import IntroBoard from "../../Entity/Facade/IntroBoard";
 import { APP_HOME_LINK } from "../../../config/constant";
+import BackButton from "../../Entity/Facade/BackButton";
+import { make } from "../../Common/functions";
 
 const cg = (entityDef: any) => {
     return container.get(entityDef.KEY);
 };
 
 const cm = (entityDef: any, ...params: any) => {
-    return container.make(entityDef.KEY, ...params);
+    return make(entityDef.KEY, ...params);
 };
 
 export default class UserScreen {
@@ -53,8 +54,13 @@ export default class UserScreen {
 
     public buildSocialIntro(): HTMLElement {
         const bg = this.domHelper.makeFromEntity(cg(EntityBackground));
+        const backBar = this.domHelper.getWarper(
+            this.domHelper.makeFromEntity(cg(BackButton)),
+            {textAlign: 'left'}
+        );
         const introBoard = this.domHelper.makeFromEntity(cg(IntroBoard));
 
+        bg.appendChild(backBar);
         bg.appendChild(introBoard);
         return bg;
     }

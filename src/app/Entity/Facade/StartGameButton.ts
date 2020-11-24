@@ -14,7 +14,7 @@ export default class StartGameButton {
         display: 'inline-block',
         padding: '.5rem',
         margin: '2rem',
-        background: '#FFFAFA',
+        background: '#EEE',
         border: '1px solid #CCC',
         borderRadius: '5px'
     }

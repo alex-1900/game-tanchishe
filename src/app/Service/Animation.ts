@@ -1,3 +1,5 @@
+import { FrameRelated, Indexable } from "../interface";
+
 export default class Animation {
     public static KEY: string = 'Service.Animation';
 
@@ -5,21 +7,31 @@ export default class Animation {
 
     private req: number = 0;
 
-    private frameUpdatedHandler: Function = null;
+    private entities: Indexable<FrameRelated> = {};
 
     public start() {
         this.isRunning = true;
         const step = ((timestamp: number) => {
-            if (this.isRunning && this.frameUpdatedHandler) {
-                this.frameUpdatedHandler(timestamp);
+            if (this.isRunning) {
+                for (const i in this.entities) {
+                    this.entities[i].update(timestamp);
+                }
                 this.req = requestAnimationFrame(step);
             }
         }).bind(this);
         this.req = requestAnimationFrame(step);
     }
 
-    public setFrameUpdatedHandler(handler: Function) {
-        this.frameUpdatedHandler = handler;
+    public addEntity(entity: FrameRelated) {
+        this.entities[entity.getUniqueId()] = entity;
+    }
+
+    public removeEntity(entity: FrameRelated) {
+        const uniqueId = entity.getUniqueId();
+        if (this.entities[uniqueId]) {
+            this.entities[uniqueId].onDestruct();
+            delete this.entities[uniqueId];
+        }
     }
 
     public stop() {

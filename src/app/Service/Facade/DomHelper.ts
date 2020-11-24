@@ -12,10 +12,10 @@ export default class DomHelper {
         this.handlerEvent = this.handlerEvent.bind(this);
     }
 
-    public getWarper(dom: HTMLElement = null): HTMLElement {
+    public getWarper(dom: HTMLElement = null, css: object = {}): HTMLElement {
         const doc = this.docService;
         const element = doc.options(doc.box('div'), {
-            css: {textAlign: 'center'}
+            css: {textAlign: 'center', ...css}
         });
         if (dom) {
             element.appendChild(dom);

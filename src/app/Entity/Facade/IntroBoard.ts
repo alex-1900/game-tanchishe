@@ -6,8 +6,7 @@ export default class IntroBoard {
 
     tag: string = 'div';
 
-    innerText: string = `
-贪吃蛇大作战，这是一个有毒的游戏！
+    innerText: string = `贪吃蛇大作战，这是一个有毒的游戏！
 
 这是一款超好玩的休闲竞技游戏，不仅比拼手速，更考验你的策略！在贪吃蛇大作战的世界中，每个人在初始都化身为一条小蛇，通过不断努力变得越来越长，最终制霸一方！
 
@@ -18,11 +17,7 @@ export default class IntroBoard {
     `;
 
     style = {
-        margin: '2rem',
+        margin: '0 2rem',
         lineHeight: '2rem'
-    }
-
-    public onclick(_: Event) {
-        eventDispatch(EventCtrlPageIndex)
     }
 }
